@@ -1,7 +1,4 @@
-import { Base, cycle, tilt } from "./code";
-// import { getArrayFromInput, tiltNorth, tilt, cycle } from "./main-alex";
-// import { INPUT } from "./input";
-// import TEST_INPUT from "./test-input";
+import { Base, cycle, tilt } from "./main";
 
 const flatBase = `O....#....
 O.OO#....#
@@ -117,8 +114,7 @@ const expectedFirstCycle = `
 ....O#....
 ......OOOO
 #...O###..
-#..OO#....
-`;
+#..OO#....`;
 
 const expectedSecondCycle = `
 .....#....
@@ -130,8 +126,7 @@ const expectedSecondCycle = `
 ....O#...O
 .......OOO
 #..OO###..
-#.OOO#...O
-`;
+#.OOO#...O`;
 
 const expectedThirdCycle = `
 .....#....
@@ -143,8 +138,7 @@ const expectedThirdCycle = `
 ....O#...O
 .......OOO
 #...O###.O
-#.OOO#...O
-`;
+#.OOO#...O`;
 
 const testNorthTilt = (base: Buffer, expected: string) => {
   const baseObj = new Base(base);
@@ -202,7 +196,7 @@ const testLoad = (base: Buffer, expected: number) => {
   const baseObj = new Base(base);
   tilt(baseObj, "N");
   const actual = baseObj.calcNorthLoad();
-  console.log('diagr', baseObj.getDiagram())
+  console.log("diagr", baseObj.getDiagram());
   if (actual !== expected) {
     console.error("Failed:", actual);
   } else {
@@ -250,7 +244,7 @@ const input = Buffer.from(flatBase, "utf-8");
 // testSouthTilt(input, tiltedSouth);
 // testEastTilt(input, tiltedEast);
 // testWestTilt(input, tiltedWest);
-testLoad(input, 136);
+// testLoad(input, 136);
 // console.debug("base", flatBase, "\n");
 // testCycles(input, 3);
 //
