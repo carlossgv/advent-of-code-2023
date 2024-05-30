@@ -7,15 +7,11 @@ const input = Buffer.from(file, "utf-8");
 const runCycles = (input: Buffer, cycles: number) => {
   const base = new Base(input);
 
-  console.log("Height: ", base.height);
-  console.log("Width: ", base.width);
-
-
   for (let i = 0; i < cycles; i++) {
     cycle(base);
   }
 
-  console.log("Load: ", base.calcNorthLoad());
+  console.log("North Load: ", base.calcNorthLoad());
 };
 
 const cycles = 100000;
