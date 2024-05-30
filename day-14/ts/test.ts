@@ -1,15 +1,16 @@
-import { Base, cycle, tilt } from "./main";
+import { Base, cycle, tilt } from "./code";
+import fs from "fs";
 
-const flatBase = `O....#....
-O.OO#....#
-.....##...
-OO.#O....O
-.O.....O#.
-O.#..O.#.#
-..O..#O..O
-.......O..
-#....###..
-#OO..#....`;
+// const flatBase = `O....#....
+// O.OO#....#
+// .....##...
+// OO.#O....O
+// .O.....O#.
+// O.#..O.#.#
+// ..O..#O..O
+// .......O..
+// #....###..
+// #OO..#....`;
 
 //   0123456789
 //  y x-------->
@@ -114,7 +115,8 @@ const expectedFirstCycle = `
 ....O#....
 ......OOOO
 #...O###..
-#..OO#....`;
+#..OO#....
+`;
 
 const expectedSecondCycle = `
 .....#....
@@ -126,7 +128,8 @@ const expectedSecondCycle = `
 ....O#...O
 .......OOO
 #..OO###..
-#.OOO#...O`;
+#.OOO#...O
+`;
 
 const expectedThirdCycle = `
 .....#....
@@ -138,10 +141,13 @@ const expectedThirdCycle = `
 ....O#...O
 .......OOO
 #...O###.O
-#.OOO#...O`;
+#.OOO#...O
+`;
 
 const testNorthTilt = (base: Buffer, expected: string) => {
   const baseObj = new Base(base);
+  console.log("height", baseObj.height);
+  console.log("width", baseObj.width);
   tilt(baseObj, "N");
   const actual = baseObj.getDiagram();
   if (actual.trim() !== expected.trim()) {
@@ -196,11 +202,11 @@ const testLoad = (base: Buffer, expected: number) => {
   const baseObj = new Base(base);
   tilt(baseObj, "N");
   const actual = baseObj.calcNorthLoad();
-  console.log("diagr", baseObj.getDiagram());
+  // console.log("Test load diagram:", baseObj.getDiagram());
   if (actual !== expected) {
     console.error("Failed:", actual);
   } else {
-    console.log("load Passed");
+    console.log("Test load passed");
   }
 };
 
@@ -229,22 +235,21 @@ const testCycles = (baseString: Buffer, cycles: number) => {
       console.error("Failed:", actual);
     } else {
       console.log(`${i + 1} cycle Passed`);
-      console.log("load", base.calcNorthLoad());
+      console.log("Load: ", base.calcNorthLoad());
     }
   }
-};
-//
-// console.log("Running tests...");
-// // testCycles(flatBase, 1000000000, 64);
-//
-// read file test-input.txt to get buffer
-const input = Buffer.from(flatBase, "utf-8");
 
-// testNorthTilt(input, tiltedNorth);
-// testSouthTilt(input, tiltedSouth);
+  console.log("load", base.calcNorthLoad());
+};
+
+let file = fs.readFileSync("../test-input.txt", "utf-8");
+const input = Buffer.from(file, "utf-8");
+
+console.log("Running tests...");
+
+testNorthTilt(input, tiltedNorth);
+testSouthTilt(input, tiltedSouth);
 // testEastTilt(input, tiltedEast);
 // testWestTilt(input, tiltedWest);
-// testLoad(input, 136);
-// console.debug("base", flatBase, "\n");
-// testCycles(input, 3);
-//
+testLoad(input, 136);
+testCycles(input, 3);
