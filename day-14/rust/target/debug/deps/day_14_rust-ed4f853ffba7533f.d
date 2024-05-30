@@ -1,0 +1,6 @@
+/Users/carlosgonzalez/personal/advent-of-code/day-14-rust/target/debug/deps/libday_14_rust-ed4f853ffba7533f.rmeta: src/main.rs src/input.rs
+
+/Users/carlosgonzalez/personal/advent-of-code/day-14-rust/target/debug/deps/day_14_rust-ed4f853ffba7533f.d: src/main.rs src/input.rs
+
+src/main.rs:
+src/input.rs:
