@@ -1,6 +1,6 @@
 import fs from "fs";
 import { calcFocusingPower, hashArray, hashString, parseLabel } from "./code";
-let input = fs.readFileSync("./test-input.txt", "utf8");
+let input = fs.readFileSync("../test-input.txt", "utf8");
 input = input.slice(0, -1);
 
 const testHash = (string: string, expected: number) => {
