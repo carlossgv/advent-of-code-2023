@@ -1,5 +1,4 @@
 import { Base, cycle } from "./code";
-import { INPUT } from "./input";
 import fs from "fs";
 
 let file = fs.readFileSync("../input.txt", "utf-8");
